@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CGM Automobile — Choix de version</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --dark: #111111;
+      --card-bg: #1a1a1a;
+      --border: rgba(255,255,255,0.08);
+      --text: #e8e8e8;
+      --muted: #777;
+    }
+
+    html, body {
+      min-height: 100vh;
+      background: var(--dark);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 60px 24px 80px;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+
+    .header img {
+      height: 60px;
+      width: auto;
+      margin-bottom: 32px;
+      opacity: 0.9;
+    }
+
+    .header h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: #fff;
+      margin-bottom: 10px;
+    }
+
+    .header p {
+      color: var(--muted);
+      font-size: 0.95rem;
+      font-weight: 400;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      width: 100%;
+      max-width: 1100px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 48px rgba(0,0,0,0.5);
+      border-color: rgba(255,255,255,0.18);
+    }
+
+    .card-preview {
+      height: 120px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Syne', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card-preview::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, transparent 40%, rgba(0,0,0,0.35) 100%);
+    }
+
+    /* V1 — Marine & Orange */
+    .v1 .card-preview {
+      background: linear-gradient(135deg, #0d1b2a 0%, #1b2e45 60%, #162030 100%);
+      color: #f26419;
+    }
+    .v1 .card-preview .swatch { background: #f26419; }
+
+    /* V2 — Blanc & Orange */
+    .v2 .card-preview {
+      background: linear-gradient(135deg, #f5f5f0 0%, #e8e8e0 100%);
+      color: #e8550a;
+    }
+    .v2 .card-preview .swatch { background: #e8550a; }
+
+    /* V3 — Gris & Rouge */
+    .v3 .card-preview {
+      background: linear-gradient(135deg, #d8d8d8 0%, #c0c0c0 100%);
+      color: #c01818;
+    }
+    .v3 .card-preview .swatch { background: #c01818; }
+
+    /* V4 — Local & Humain */
+    .v4 .card-preview {
+      background: linear-gradient(135deg, #1c2a1a 0%, #2a3d28 60%, #1a2818 100%);
+      color: #7eb87a;
+    }
+    .v4 .card-preview .swatch { background: #7eb87a; }
+
+    /* V5 — Dark Gold */
+    .v5 .card-preview {
+      background: linear-gradient(135deg, #1a1a1a 0%, #222222 50%, #1e1e1e 100%);
+      color: #b8a882;
+    }
+    .v5 .card-preview .swatch { background: #b8a882; }
+
+    .preview-label {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .swatch {
+      width: 36px;
+      height: 4px;
+      border-radius: 2px;
+      opacity: 0.9;
+    }
+
+    .card-body {
+      padding: 20px 22px 22px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .version-tag {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .version-name {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    .version-desc {
+      font-size: 0.83rem;
+      color: var(--muted);
+      line-height: 1.5;
+      margin-top: 2px;
+    }
+
+    .card-cta {
+      margin-top: 16px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.5);
+      transition: color 0.2s;
+    }
+
+    .card:hover .card-cta { color: rgba(255,255,255,0.9); }
+
+    .card-cta svg { transition: transform 0.2s; }
+    .card:hover .card-cta svg { transform: translateX(4px); }
+
+    .footer {
+      margin-top: 60px;
+      color: var(--muted);
+      font-size: 0.78rem;
+      text-align: center;
+    }
+
+    @media (max-width: 600px) {
+      .grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <img src="logo.png" alt="CGM Automobile" />
+    <h1>Choix de version</h1>
+    <p>Sélectionnez une proposition de design pour la consulter</p>
+  </div>
+
+  <div class="grid">
+
+    <!-- V1 -->
+    <a href="v1.html" class="card v1">
+      <div class="card-preview">
+        <div class="preview-label">
+          <span>V1</span>
+          <div class="swatch"></div>
+        </div>
+      </div>
+      <div class="card-body">
+        <span class="version-tag">Version 1</span>
+        <span class="version-name">Marine &amp; Orange</span>
+        <span class="version-desc">Ambiance premium sombre, tons marine profond et orange dynamique.</span>
+        <span class="card-cta">
+          Voir la version
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </span>
+      </div>
+    </a>
+
+    <!-- V2 -->
+    <a href="v2.html" class="card v2">
+      <div class="card-preview">
+        <div class="preview-label">
+          <span>V2</span>
+          <div class="swatch"></div>
+        </div>
+      </div>
+      <div class="card-body">
+        <span class="version-tag">Version 2</span>
+        <span class="version-name">Blanc &amp; Orange</span>
+        <span class="version-desc">Design clair et aéré, fond blanc avec accents orange vif.</span>
+        <span class="card-cta">
+          Voir la version
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </span>
+      </div>
+    </a>
+
+    <!-- V3 -->
+    <a href="v3.html" class="card v3">
+      <div class="card-preview">
+        <div class="preview-label">
+          <span>V3</span>
+          <div class="swatch"></div>
+        </div>
+      </div>
+      <div class="card-body">
+        <span class="version-tag">Version 3</span>
+        <span class="version-name">Gris &amp; Rouge</span>
+        <span class="version-desc">Palette lumineuse gris clair avec touches rouges percutantes.</span>
+        <span class="card-cta">
+          Voir la version
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </span>
+      </div>
+    </a>
+
+    <!-- V4 -->
+    <a href="v4.html" class="card v4">
+      <div class="card-preview">
+        <div class="preview-label">
+          <span>V4</span>
+          <div class="swatch"></div>
+        </div>
+      </div>
+      <div class="card-body">
+        <span class="version-tag">Version 4</span>
+        <span class="version-name">Local &amp; Humain</span>
+        <span class="version-desc">Approche chaleureuse et de proximité, axée sur la confiance et le local.</span>
+        <span class="card-cta">
+          Voir la version
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </span>
+      </div>
+    </a>
+
+  </div>
+
+  <p class="footer">CGM Automobile — Présentation client · Confidentiel</p>
+
+</body>
+</html>
