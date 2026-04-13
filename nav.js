@@ -1,15 +1,22 @@
 (function () {
   const versions = [
-    { file: 'v1.html', label: 'V1', name: 'Marine & Orange' },
-    { file: 'v2.html', label: 'V2', name: 'Blanc & Orange'  },
-    { file: 'v3.html', label: 'V3', name: 'Gris & Rouge'    },
-    { file: 'v4.html', label: 'V4', name: 'Local & Humain'  },
+    { file: 'v1.html',             label: 'V1', name: 'Blanc & Orange' },
+    { file: 'gestion-flotte-v1.html', label: 'V1', name: 'Blanc & Orange' },
+    { file: 'v3.html',             label: 'V2', name: 'Gris & Rouge'   },
+    { file: 'v4.html',             label: 'V3', name: 'Local & Humain' },
+  ];
+
+  /* Pages de sinistre uniquement pour la navigation ‹ › */
+  const sinistre = [
+    { file: 'v1.html', label: 'V1', name: 'Blanc & Orange' },
+    { file: 'v3.html', label: 'V2', name: 'Gris & Rouge'   },
+    { file: 'v4.html', label: 'V3', name: 'Local & Humain' },
   ];
 
   const current = location.pathname.split('/').pop() || 'index.html';
-  const idx     = versions.findIndex(v => v.file === current);
-  const prev    = idx > 0                   ? versions[idx - 1] : null;
-  const next    = idx < versions.length - 1 ? versions[idx + 1] : null;
+  const idx     = sinistre.findIndex(v => v.file === current);
+  const prev    = idx > 0                    ? sinistre[idx - 1] : null;
+  const next    = idx < sinistre.length - 1  ? sinistre[idx + 1] : null;
 
   const css = `
     /* ── Barre desktop ── */
@@ -174,26 +181,6 @@
       flex-shrink: 0;
     }
     .cgm-popup-item.active .cgm-popup-badge { background: #fff; color: #111; }
-    .cgm-popup-divider {
-      height: 1px;
-      background: rgba(255,255,255,0.08);
-      margin: 4px 0;
-    }
-    .cgm-popup-menu {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 7px 10px;
-      border-radius: 8px;
-      text-decoration: none;
-      color: rgba(255,255,255,0.5);
-      font-family: 'Inter', system-ui, sans-serif;
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: .04em;
-      transition: background .15s, color .15s;
-    }
-    .cgm-popup-menu:hover { background: rgba(255,255,255,0.08); color: #fff; }
 
     @media (max-width: 768px) {
       #cgm-nav  { display: none; }
@@ -206,15 +193,15 @@
   document.head.appendChild(style);
 
   /* ── Desktop bar ── */
-  const dotsHTML = versions.map((v, i) =>
+  const dotsHTML = sinistre.map((v, i) =>
     `<a href="${v.file}" class="cgm-dot${i === idx ? ' active' : ''}" title="${v.label} — ${v.name}"></a>`
   ).join('');
-  const currentLabel = idx >= 0 ? `<span class="cgm-label">${versions[idx].label}</span>` : '';
+  const currentLabel = idx >= 0 ? `<span class="cgm-label">${sinistre[idx].label}</span>` : '';
 
   const nav = document.createElement('div');
   nav.id = 'cgm-nav';
   nav.innerHTML = `
-    <a href="menu.html" class="cgm-menu-btn">☰ Menu</a>
+    <span class="cgm-menu-btn">Versions</span>
     <span class="cgm-sep">|</span>
     ${prev ? `<a href="${prev.file}" class="cgm-arrow" title="${prev.label}">‹</a>` : '<span class="cgm-arrow" style="opacity:.2">‹</span>'}
     <div class="cgm-dots">${dotsHTML}</div>
@@ -223,7 +210,7 @@
   `;
 
   /* ── Mobile popup ── */
-  const popupItems = versions.map((v, i) => `
+  const popupItems = sinistre.map((v, i) => `
     <a href="${v.file}" class="cgm-popup-item${i === idx ? ' active' : ''}">
       <span class="cgm-popup-badge">${v.label}</span>
       ${v.name}
@@ -232,14 +219,10 @@
 
   const popup = document.createElement('div');
   popup.id = 'cgm-popup';
-  popup.innerHTML = `
-    ${popupItems}
-    <div class="cgm-popup-divider"></div>
-    <a href="menu.html" class="cgm-popup-menu">☰ Voir toutes les versions</a>
-  `;
+  popup.innerHTML = popupItems;
 
   /* ── Mobile FAB ── */
-  const fabDotsHTML = versions.map((v, i) =>
+  const fabDotsHTML = sinistre.map((v, i) =>
     `<span class="cgm-fab-dot${i === idx ? ' active' : ''}"></span>`
   ).join('');
 

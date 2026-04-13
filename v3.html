@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CGM Automobile | Variante D — Gris clair / Rouge</title>
+  <link rel="icon" type="image/svg+xml" href="favicon-v3.svg" />
+  <title>Globale Service Automotive | Gestion de Sinistre</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,400&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
@@ -79,6 +80,11 @@
     }
 
     .nav-cta:hover { background: var(--red-dk); }
+    .version-switcher { display: flex; align-items: center; gap: 6px; padding: 0 4px; }
+    .vs-label { font-size: 0.68rem; font-weight: 600; color: var(--ink-light); margin-right: 2px; }
+    .vs-dot { width: 13px; height: 13px; border-radius: 50%; display: block; border: 2px solid transparent; transition: transform 0.15s, box-shadow 0.15s; cursor: pointer; }
+    .vs-dot:hover { transform: scale(1.25); }
+    .vs-dot.vs-active { box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px currentColor; }
 
     /* ── HERO ── */
     #hero {
@@ -590,6 +596,9 @@
       .sticky-btn { display: block; }
       body { padding-bottom: 72px; }
       .why-grid { grid-template-columns: 1fr; }
+      .nav-cta { padding: 9px 14px; font-size: 0.8rem; gap: 6px; }
+      .nav-cta svg { display: none; }
+      .btn-red { font-size: 0.78rem; padding: 14px 18px; gap: 8px; white-space: nowrap; display: flex; width: fit-content; margin: 0 auto; }
     }
   </style>
 </head>
@@ -598,11 +607,13 @@
 <!-- NAV -->
 <nav>
   <a href="#" class="nav-logo">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 172 44" height="44" aria-label="CGM Automobile">
-      <rect x="0" y="3" width="3.5" height="38" rx="1.75" fill="#dc2626"/>
-      <rect x="7" y="10" width="3.5" height="24" rx="1.75" fill="#dc2626" opacity="0.35"/>
-      <text x="18" y="29" font-family="Manrope,system-ui,sans-serif" font-size="24" font-weight="800" fill="#0f172a" letter-spacing="-0.5">CGM</text>
-      <text x="19" y="41" font-family="Manrope,system-ui,sans-serif" font-size="8" font-weight="600" fill="#64748b" letter-spacing="2.8">AUTOMOBILE</text>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 44" height="44" aria-label="Globale Service Automotive">
+      <!-- Shield icon -->
+      <path d="M4 6 L20 2 L36 6 L36 20 C36 30 20 38 20 38 C20 38 4 30 4 20 Z" fill="#dc2626"/>
+      <path d="M20 10 L20 28 M12 19 L28 19" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+      <!-- Brand text -->
+      <text x="46" y="24" font-family="Space Grotesk,system-ui,sans-serif" font-size="18" font-weight="700" fill="#0f172a" letter-spacing="-0.3">Globale Service</text>
+      <text x="47" y="38" font-family="Space Grotesk,system-ui,sans-serif" font-size="8" font-weight="600" fill="#64748b" letter-spacing="2.5">AUTOMOTIVE</text>
     </svg>
   </a>
   <div class="nav-right">
@@ -624,7 +635,7 @@
     <div class="hero-left">
       <div class="hero-kicker">Gestion de sinistre automobile · Tresses, Gironde</div>
       <h1>Votre sinistre,<br />géré sans stress.<br />De A à Z.</h1>
-      <p class="hero-sub">Un accident, c'est déjà suffisamment éprouvant. CGM Automobile prend l'intégralité des démarches en charge — assureur, expert, réparation. Vous n'avez qu'un appel à passer.</p>
+      <p class="hero-sub">Un accident, c'est déjà suffisamment éprouvant. Globale Service Automotive prend l'intégralité des démarches en charge — assureur, expert, réparation. Vous n'avez qu'un appel à passer.</p>
       <a href="tel:+33XXXXXXXXX" class="btn-red">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
         Appeler maintenant — 05 XX XX XX XX
@@ -637,7 +648,7 @@
 
     <div class="hero-stats-card">
       <div class="stats-header">
-        <p>"Après mon accident, j'étais perdue. CGM a tout géré, je n'ai eu à m'occuper de rien."</p>
+        <p>"Après mon accident, j'étais perdue. Globale Service a tout géré, je n'ai eu à m'occuper de rien."</p>
         <strong>— Marie-Claire B., cliente Gironde</strong>
       </div>
       <div class="stats-grid">
@@ -659,7 +670,7 @@
         </div>
       </div>
       <div class="cta-strip">
-        <span>Agréé toutes compagnies d'assurance</span>
+        <span>Toutes compagnies d'assurance</span>
         <a href="tel:+33XXXXXXXXX">Appeler</a>
       </div>
     </div>
@@ -670,7 +681,7 @@
 <div class="rea-strip">
   <div class="rea-item">
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-    Agréé toutes assurances
+    Aucune avance de frais
   </div>
   <div class="rea-item">
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17H3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v3m0 0h3l3 3v4h-6m0 0a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm-9 0a2 2 0 1 1-4 0 2 2 0 0 1 4 0z"/></svg>
@@ -718,7 +729,7 @@
       </div>
 
       <div class="promise-panel">
-        <h3>CGM prend tout en charge. Vous n'avez qu'un seul appel à passer.</h3>
+        <h3>Globale Service prend tout en charge. Vous n'avez qu'un seul appel à passer.</h3>
         <div class="promise-rows">
           <div class="promise-row">
             <div class="checkmark">
@@ -736,7 +747,7 @@
             <div class="checkmark">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
             </div>
-            <p>Réparation dans notre atelier agréé, résultat garanti</p>
+            <p>Réparation dans notre atelier, résultat garanti</p>
           </div>
           <div class="promise-row">
             <div class="checkmark">
@@ -781,7 +792,7 @@
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
         </div>
         <h3>Réparation & remise en état</h3>
-        <p>Carrosserie, peinture, mécanique — notre atelier agréé remet votre véhicule en parfait état.</p>
+        <p>Carrosserie, peinture, mécanique — notre atelier remet votre véhicule en parfait état.</p>
       </div>
       <div class="srv">
         <div class="srv-icon">
@@ -849,7 +860,7 @@
           <div><div class="rv-name">Marie-Claire B.</div><div class="rv-date">Il y a 2 semaines</div></div>
         </div>
         <div class="rv-stars">★★★★★</div>
-        <p class="rv-text">"Après mon accident, j'étais complètement perdue. CGM a tout géré : l'assurance, l'expert, les réparations. Je n'ai eu à m'occuper de rien."</p>
+        <p class="rv-text">"Après mon accident, j'étais complètement perdue. Globale Service a tout géré : l'assurance, l'expert, les réparations. Je n'ai eu à m'occuper de rien."</p>
       </div>
       <div class="rv">
         <div class="rv-top">
@@ -940,7 +951,7 @@
         </div>
       </div>
       <div class="map-wrap">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2838.5!2d-0.4826!3d44.8285!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd5527b79d0e3901%3A0x0!2s2+Chemin+de+Belle+%C3%89toile%2C+33370+Tresses!5e0!3m2!1sfr!2sfr!4v1680000000000!5m2!1sfr!2sfr" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="CGM Automobile"></iframe>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2838.5!2d-0.4826!3d44.8285!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd5527b79d0e3901%3A0x0!2s2+Chemin+de+Belle+%C3%89toile%2C+33370+Tresses!5e0!3m2!1sfr!2sfr!4v1680000000000!5m2!1sfr!2sfr" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Globale Service Automotive"></iframe>
       </div>
     </div>
   </div>
@@ -949,13 +960,15 @@
 <!-- FOOTER -->
 <footer>
   <div class="footer-inner">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 172 44" height="44" aria-label="CGM Automobile">
-      <rect x="0" y="3" width="3.5" height="38" rx="1.75" fill="#dc2626"/>
-      <rect x="7" y="10" width="3.5" height="24" rx="1.75" fill="#dc2626" opacity="0.38"/>
-      <text x="18" y="29" font-family="Manrope,system-ui,sans-serif" font-size="24" font-weight="800" fill="#ffffff" letter-spacing="-0.5">CGM</text>
-      <text x="19" y="41" font-family="Manrope,system-ui,sans-serif" font-size="8" font-weight="600" fill="#8fa3b8" letter-spacing="2.8">AUTOMOBILE</text>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 32" height="32" aria-label="Globale Service Automotive">
+      <!-- Shield icon -->
+      <path d="M3 5 L14 2 L25 5 L25 15 C25 22 14 27 14 27 C14 27 3 22 3 15 Z" fill="#dc2626" opacity="0.85"/>
+      <path d="M14 8 L14 22 M8 15 L20 15" stroke="white" stroke-width="2" stroke-linecap="round"/>
+      <!-- Brand text -->
+      <text x="32" y="17" font-family="Space Grotesk,system-ui,sans-serif" font-size="13" font-weight="700" fill="#ffffff" letter-spacing="-0.2">Globale Service</text>
+      <text x="33" y="28" font-family="Space Grotesk,system-ui,sans-serif" font-size="6.5" font-weight="600" fill="#8fa3b8" letter-spacing="2">AUTOMOTIVE</text>
     </svg>
-    <p>© 2024 CGM Automobile · 2 Chemin de Belle Étoile, 33370 Tresses · SIRET : 828 956 748 00036</p>
+    <p>© 2024 Globale Service Automotive · 2 Chemin de Belle Étoile, 33370 Tresses · SIRET : 828 956 748 00036</p>
     <p><a href="#">Mentions légales</a> · <a href="#">Politique de confidentialité</a></p>
   </div>
 </footer>

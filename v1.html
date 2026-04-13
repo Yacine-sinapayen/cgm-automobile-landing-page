@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="CGM Automobile — Gestion de sinistre auto à Tresses (33370). Prise en charge complète après accident. Appelez-nous maintenant." />
-  <title>CGM Automobile | Gestion de Sinistre — Variante A : Navy / Orange</title>
+  <link rel="icon" type="image/svg+xml" href="favicon-v1.svg" />
+  <title>Globale Service Automotive | Gestion de Sinistre — Tresses, Bordeaux Rive Droite</title>
+  <meta name="description" content="Votre sinistre auto géré de A à Z. Globale Service Automotive intervient à Tresses, Fargues-Saint-Hilaire, Sallebœuf, Floirac, Cenon, Bègles, Beychac-et-Caillau, Montussan, Pompignac et sur toute la Rive Droite de Bordeaux." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -12,25 +13,27 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --navy:        #0d1b2a;
-      --navy-mid:    #1b2e45;
-      --navy-light:  #243d5c;
-      --orange:      #f26419;
-      --orange-dark: #d4531a;
-      --white:       #ffffff;
-      --off-white:   #f0f4f8;
-      --muted:       #8fa3b8;
-      --border:      rgba(255,255,255,0.07);
-      --radius:      10px;
-      --radius-lg:   18px;
+      --bg:        #ffffff;
+      --surface:   #f5f6f8;
+      --surface2:  #eceef2;
+      --ink:       #111827;
+      --ink-mid:   #374151;
+      --ink-light: #6b7280;
+      --orange:    #f26419;
+      --orange-dk: #d4531a;
+      --orange-bg: #fff5ef;
+      --orange-bd: #fde0ce;
+      --border:    #e5e7eb;
+      --radius:    10px;
+      --radius-lg: 18px;
     }
 
     html { scroll-behavior: smooth; }
 
     body {
       font-family: 'Manrope', sans-serif;
-      background: var(--navy);
-      color: var(--white);
+      background: var(--bg);
+      color: var(--ink);
       line-height: 1.6;
       overflow-x: hidden;
     }
@@ -39,24 +42,59 @@
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       display: flex; align-items: center; justify-content: space-between;
-      padding: 18px 48px;
-      background: rgba(13,27,42,0.95);
+      padding: 16px 48px;
+      background: rgba(255,255,255,0.95);
       backdrop-filter: blur(10px);
       border-bottom: 1px solid var(--border);
     }
 
     .nav-logo svg { height: 44px; width: auto; }
 
+    .nav-right { display: flex; align-items: center; gap: 16px; }
+
     .nav-phone {
-      display: flex; align-items: center; gap: 10px;
-      color: var(--orange);
-      font-size: 1.15rem;
-      font-weight: 800;
-      text-decoration: none;
-      letter-spacing: -0.01em;
+      font-size: 1rem; font-weight: 800;
+      color: var(--ink); text-decoration: none;
+      display: flex; align-items: center; gap: 7px;
     }
 
-    .nav-phone svg { flex-shrink: 0; }
+    .nav-phone svg { color: var(--orange); }
+
+    .nav-cta {
+      background: var(--orange);
+      color: #fff;
+      font-weight: 700; font-size: 0.88rem;
+      text-decoration: none;
+      padding: 11px 22px; border-radius: 50px;
+      display: flex; align-items: center; gap: 8px;
+      transition: background 0.2s;
+    }
+
+    .nav-cta:hover { background: var(--orange-dk); }
+
+    .nav-links {
+      display: flex; align-items: center; gap: 4px;
+    }
+    .nav-link {
+      font-size: 0.88rem; font-weight: 600;
+      color: var(--ink-mid);
+      text-decoration: none;
+      padding: 8px 16px; border-radius: 50px;
+      transition: background 0.2s, color 0.2s;
+    }
+    .nav-link:hover { background: var(--surface); color: var(--ink); }
+    .nav-link.active {
+      color: var(--orange);
+      background: var(--orange-bg);
+    }
+    .version-switcher { display: flex; align-items: center; gap: 6px; padding: 0 4px; }
+    .vs-label { font-size: 0.68rem; font-weight: 600; color: var(--ink-light); margin-right: 2px; }
+    .vs-dot { width: 13px; height: 13px; border-radius: 50%; display: block; border: 2px solid transparent; transition: transform 0.15s, box-shadow 0.15s; cursor: pointer; }
+    .vs-dot:hover { transform: scale(1.25); }
+    .vs-dot.vs-active { box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px currentColor; }
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+    }
 
     /* ── HERO ── */
     #hero {
@@ -64,38 +102,35 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       align-items: center;
-      padding: 120px 48px 80px;
+      padding: 130px 48px 80px;
       gap: 64px;
+      background: var(--bg);
       position: relative;
       overflow: hidden;
     }
 
-    .hero-bg {
-      position: absolute; inset: 0;
-      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 60%, #162030 100%);
-    }
-
-    /* Diagonal accent */
-    .hero-bg::before {
+    /* Subtle geometric background */
+    #hero::before {
       content: '';
       position: absolute;
       top: 0; right: 0;
-      width: 55%;
+      width: 50%;
       height: 100%;
-      background: var(--navy-light);
-      clip-path: polygon(12% 0, 100% 0, 100% 100%, 0% 100%);
-      opacity: 0.4;
+      background: var(--surface);
+      clip-path: polygon(8% 0, 100% 0, 100% 100%, 0% 100%);
+      z-index: 0;
     }
 
     .hero-left { position: relative; z-index: 1; }
+    .hero-right { position: relative; z-index: 1; }
 
-    .hero-badge {
+    .hero-label {
       display: inline-flex; align-items: center; gap: 8px;
-      background: rgba(242,100,25,0.12);
-      border: 1px solid rgba(242,100,25,0.3);
-      color: var(--orange);
       font-size: 0.72rem; font-weight: 700;
-      letter-spacing: 0.12em; text-transform: uppercase;
+      text-transform: uppercase; letter-spacing: 0.12em;
+      color: var(--orange);
+      background: var(--orange-bg);
+      border: 1px solid var(--orange-bd);
       padding: 6px 14px; border-radius: 50px;
       margin-bottom: 24px;
     }
@@ -103,41 +138,41 @@
     h1 {
       font-size: clamp(2rem, 4vw, 3.2rem);
       font-weight: 800;
-      line-height: 1.15;
+      line-height: 1.12;
       letter-spacing: -0.03em;
+      color: var(--ink);
       margin-bottom: 20px;
     }
 
-    h1 span { color: var(--orange); }
+    h1 .accent { color: var(--orange); }
 
     .hero-sub {
       font-size: 1rem;
-      color: var(--muted);
-      font-weight: 400;
+      color: var(--ink-light);
       margin-bottom: 40px;
       max-width: 460px;
-      line-height: 1.7;
+      line-height: 1.75;
     }
 
     .btn-orange {
       display: inline-flex; align-items: center; gap: 12px;
       background: var(--orange);
-      color: var(--white);
+      color: #fff;
       font-weight: 700; font-size: 1rem;
       text-decoration: none;
       padding: 18px 32px; border-radius: 50px;
-      box-shadow: 0 8px 28px rgba(242,100,25,0.4);
+      box-shadow: 0 8px 28px rgba(242,100,25,0.3);
       transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
     }
 
     .btn-orange:hover {
-      background: var(--orange-dark);
+      background: var(--orange-dk);
       transform: translateY(-2px);
-      box-shadow: 0 14px 40px rgba(242,100,25,0.5);
+      box-shadow: 0 14px 40px rgba(242,100,25,0.4);
     }
 
     .btn-orange .icon {
-      background: rgba(255,255,255,0.15);
+      background: rgba(255,255,255,0.25);
       border-radius: 50%;
       width: 36px; height: 36px;
       display: flex; align-items: center; justify-content: center;
@@ -145,72 +180,75 @@
 
     .hero-note {
       display: flex; align-items: center; gap: 6px;
-      font-size: 0.78rem; color: var(--muted);
-      margin-top: 16px;
+      font-size: 0.78rem; color: var(--ink-light);
+      margin-top: 14px;
     }
 
-    .hero-right {
-      position: relative; z-index: 1;
-      display: flex; flex-direction: column; gap: 16px;
-    }
-
-    .hero-visual {
-      background: var(--navy-light);
+    /* Right panel */
+    .hero-panel {
+      background: #fff;
       border: 1px solid var(--border);
       border-radius: var(--radius-lg);
-      height: 320px;
-      display: flex; align-items: center; justify-content: center;
       overflow: hidden;
-      position: relative;
+      box-shadow: 0 4px 32px rgba(0,0,0,0.06);
     }
 
-    /* SVG car illustration */
-    .hero-visual svg { width: 90%; height: auto; opacity: 0.85; }
-
-    .hero-stats {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;
+    .hero-illustration {
+      background: linear-gradient(135deg, #1b2e45 0%, #0d1b2a 100%);
+      padding: 40px;
+      display: flex; align-items: center; justify-content: center;
+      min-height: 220px;
     }
 
-    .stat-card {
-      background: var(--navy-light);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 20px 16px; text-align: center;
+    .hero-illustration svg { width: 100%; height: auto; max-width: 380px; }
+
+    .hero-stats-panel {
+      display: grid; grid-template-columns: repeat(3, 1fr);
     }
 
-    .stat-card strong {
+    .stat-cell {
+      padding: 24px 20px; text-align: center;
+      border-right: 1px solid var(--border);
+      border-top: 1px solid var(--border);
+    }
+
+    .stat-cell:last-child { border-right: none; }
+
+    .stat-cell strong {
       display: block;
       font-size: 1.6rem; font-weight: 800;
-      color: var(--orange);
+      color: var(--orange); line-height: 1;
     }
 
-    .stat-card span {
-      font-size: 0.72rem; color: var(--muted);
+    .stat-cell span {
+      font-size: 0.7rem; color: var(--ink-light);
       text-transform: uppercase; letter-spacing: 0.06em;
+      margin-top: 4px; display: block;
     }
 
     /* ── REASSURANCE BAR ── */
-    .reassurance-bar {
-      background: var(--orange);
-      padding: 16px 48px;
+    .rea-bar {
+      background: var(--ink);
+      padding: 18px 48px;
       display: flex; align-items: center; justify-content: center;
       gap: 40px; flex-wrap: wrap;
     }
 
     .rea-item {
-      display: flex; align-items: center; gap: 8px;
+      display: flex; align-items: center; gap: 9px;
       font-size: 0.82rem; font-weight: 600;
-      color: rgba(255,255,255,0.95);
-      white-space: nowrap;
+      color: rgba(255,255,255,0.85);
     }
 
+    .rea-item svg { color: var(--orange); }
+
     /* ── SECTIONS ── */
-    section { padding: 88px 48px; }
+    section { padding: 96px 48px; }
     .section-inner { max-width: 1100px; margin: 0 auto; }
 
     .tag {
       display: inline-block;
-      font-size: 0.7rem; font-weight: 700;
+      font-size: 0.68rem; font-weight: 700;
       text-transform: uppercase; letter-spacing: 0.14em;
       color: var(--orange); margin-bottom: 12px;
     }
@@ -218,27 +256,27 @@
     h2 {
       font-size: clamp(1.7rem, 3vw, 2.4rem);
       font-weight: 800; letter-spacing: -0.025em;
-      line-height: 1.15; margin-bottom: 16px;
+      line-height: 1.15; color: var(--ink); margin-bottom: 14px;
     }
 
     .section-sub {
-      font-size: 0.95rem; color: var(--muted);
-      max-width: 500px; font-weight: 400;
+      font-size: 0.95rem; color: var(--ink-light);
+      max-width: 500px;
     }
 
     /* ── PROBLEM ── */
-    #problem { background: var(--navy-mid); }
+    #problem { background: var(--surface); }
 
     .problem-grid {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 56px;
-      align-items: center; margin-top: 48px;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 56px; align-items: start; margin-top: 52px;
     }
 
-    .pain-list { display: flex; flex-direction: column; gap: 20px; }
+    .pain-list { display: flex; flex-direction: column; gap: 16px; }
 
     .pain-item {
-      display: flex; align-items: flex-start; gap: 16px;
-      background: rgba(255,255,255,0.03);
+      display: flex; align-items: flex-start; gap: 14px;
+      background: var(--bg);
       border: 1px solid var(--border);
       border-radius: var(--radius);
       padding: 22px 20px;
@@ -246,13 +284,14 @@
 
     .pain-icon {
       width: 40px; height: 40px; border-radius: 10px;
-      background: rgba(242,100,25,0.1);
+      background: var(--orange-bg);
+      border: 1px solid var(--orange-bd);
       display: flex; align-items: center; justify-content: center;
       color: var(--orange); flex-shrink: 0;
     }
 
-    .pain-item h4 { font-size: 0.88rem; font-weight: 700; margin-bottom: 4px; }
-    .pain-item p { font-size: 0.8rem; color: var(--muted); }
+    .pain-item h4 { font-size: 0.88rem; font-weight: 700; color: var(--ink); margin-bottom: 4px; }
+    .pain-item p { font-size: 0.8rem; color: var(--ink-light); }
 
     .promise-box {
       background: var(--orange);
@@ -261,265 +300,314 @@
     }
 
     .promise-box h3 {
-      font-size: 1.5rem; font-weight: 800;
-      line-height: 1.2; margin-bottom: 20px;
+      font-size: 1.4rem; font-weight: 800;
+      color: #fff; line-height: 1.25; margin-bottom: 24px;
     }
 
     .promise-points { display: flex; flex-direction: column; gap: 14px; }
 
-    .promise-point {
-      display: flex; align-items: center; gap: 12px;
-      font-size: 0.9rem; font-weight: 600;
+    .promise-pt {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 0.9rem; font-weight: 600; color: rgba(255,255,255,0.95);
     }
 
-    .promise-point svg { flex-shrink: 0; }
+    .promise-pt svg { flex-shrink: 0; }
 
     /* ── SERVICES ── */
-    #services { background: var(--navy); }
+    #services { background: var(--bg); }
 
     .services-grid {
       display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 20px; margin-top: 48px;
+      gap: 20px; margin-top: 52px;
     }
 
-    .service-card {
-      background: var(--navy-mid);
+    .srv-card {
+      background: var(--bg);
       border: 1px solid var(--border);
       border-radius: var(--radius-lg);
       padding: 36px 28px;
-      transition: border-color 0.2s, transform 0.2s;
+      transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
     }
 
-    .service-card:hover {
-      border-color: rgba(242,100,25,0.4);
+    .srv-card:hover {
+      border-color: var(--orange-bd);
+      box-shadow: 0 8px 32px rgba(242,100,25,0.08);
       transform: translateY(-4px);
     }
 
-    .service-icon {
+    .srv-icon {
       width: 52px; height: 52px;
-      background: rgba(242,100,25,0.1);
-      border: 1px solid rgba(242,100,25,0.2);
+      background: var(--orange-bg);
+      border: 1px solid var(--orange-bd);
       border-radius: 14px;
       display: flex; align-items: center; justify-content: center;
       color: var(--orange); margin-bottom: 20px;
     }
 
-    .service-card h3 {
-      font-size: 1rem; font-weight: 700; margin-bottom: 10px;
-    }
-
-    .service-card p { font-size: 0.83rem; color: var(--muted); line-height: 1.6; }
+    .srv-card h3 { font-size: 1rem; font-weight: 700; color: var(--ink); margin-bottom: 10px; }
+    .srv-card p { font-size: 0.83rem; color: var(--ink-light); line-height: 1.65; }
 
     /* ── WHY ── */
-    #why { background: var(--navy-mid); }
+    #why { background: var(--surface); }
 
     .why-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 24px; margin-top: 48px;
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 24px; margin-top: 52px;
     }
 
-    .why-item {
-      display: flex; align-items: flex-start; gap: 18px;
-    }
-
-    .why-num {
-      font-size: 2.4rem; font-weight: 800;
-      color: rgba(242,100,25,0.15);
-      line-height: 1; flex-shrink: 0;
-      font-variant-numeric: tabular-nums;
-    }
-
-    .why-item h3 { font-size: 1rem; font-weight: 700; margin-bottom: 6px; }
-    .why-item p { font-size: 0.83rem; color: var(--muted); }
-
-    /* ── REVIEWS ── */
-    #reviews { background: var(--navy); }
-
-    .reviews-top {
-      display: flex; align-items: center; justify-content: space-between;
-      gap: 24px; margin-bottom: 48px; flex-wrap: wrap;
-    }
-
-    .reviews-score-box {
-      background: var(--navy-mid);
+    .why-card {
+      background: var(--bg);
       border: 1px solid var(--border);
       border-radius: var(--radius-lg);
-      padding: 24px 32px;
-      display: flex; align-items: center; gap: 20px;
+      padding: 36px 28px;
     }
 
-    .big-score {
-      font-size: 3rem; font-weight: 800; line-height: 1; color: var(--orange);
+    .why-card .num {
+      font-size: 3rem; font-weight: 800;
+      color: var(--orange-bd); line-height: 1; margin-bottom: 16px;
     }
 
-    .stars { color: #fbbf24; font-size: 1.1rem; letter-spacing: 2px; }
-    .score-meta { font-size: 0.75rem; color: var(--muted); margin-top: 4px; }
+    .why-card h3 { font-size: 1rem; font-weight: 700; color: var(--ink); margin-bottom: 8px; }
+    .why-card p { font-size: 0.83rem; color: var(--ink-light); line-height: 1.65; }
+
+    /* ── REVIEWS ── */
+    #reviews { background: var(--bg); }
+
+    .reviews-top {
+      display: flex; justify-content: space-between;
+      align-items: flex-start; gap: 24px; margin-bottom: 48px; flex-wrap: wrap;
+    }
+
+    .score-box {
+      display: flex; align-items: center; gap: 18px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 22px 28px;
+    }
+
+    .score-num {
+      font-size: 3rem; font-weight: 800;
+      color: var(--orange); line-height: 1;
+    }
+
+    .stars { color: #f59e0b; font-size: 1.1rem; letter-spacing: 2px; }
+    .score-meta { font-size: 0.73rem; color: var(--ink-light); margin-top: 4px; }
 
     .reviews-grid {
       display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 20px;
     }
 
-    .review-card {
-      background: var(--navy-mid);
+    .rv {
+      background: var(--surface);
       border: 1px solid var(--border);
       border-radius: var(--radius-lg);
       padding: 28px 24px;
-      transition: transform 0.2s;
     }
-
-    .review-card:hover { transform: translateY(-3px); }
 
     .rv-top { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
 
-    .rv-avatar {
+    .rv-av {
       width: 42px; height: 42px; border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
       font-weight: 700; font-size: 1rem; flex-shrink: 0;
     }
 
-    .rv-name { font-size: 0.88rem; font-weight: 700; }
-    .rv-date { font-size: 0.72rem; color: var(--muted); }
-    .rv-stars { color: #fbbf24; font-size: 0.82rem; margin-bottom: 10px; }
-    .rv-text { font-size: 0.85rem; color: var(--muted); font-style: italic; line-height: 1.65; }
+    .rv-name { font-size: 0.88rem; font-weight: 700; color: var(--ink); }
+    .rv-date { font-size: 0.72rem; color: var(--ink-light); }
+    .rv-stars { color: #f59e0b; font-size: 0.82rem; margin-bottom: 10px; }
+    .rv-text { font-size: 0.85rem; color: var(--ink-mid); font-style: italic; line-height: 1.7; }
 
     /* ── CTA MID ── */
     #cta-mid {
-      background: var(--navy-light);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      padding: 80px 48px; text-align: center;
+      background: var(--ink);
+      padding: 88px 48px; text-align: center;
     }
 
-    #cta-mid h2 { margin-bottom: 12px; }
-    #cta-mid p { color: var(--muted); margin-bottom: 36px; }
+    #cta-mid h2 { color: #fff; margin-bottom: 12px; }
+    #cta-mid p { color: #9ca3af; margin-bottom: 36px; }
 
-    .cta-row {
-      display: flex; align-items: center; justify-content: center;
-      gap: 20px; flex-wrap: wrap;
+    .btn-orange-big {
+      display: inline-flex; align-items: center; gap: 12px;
+      background: var(--orange);
+      color: #fff;
+      font-weight: 700; font-size: 1.1rem;
+      text-decoration: none;
+      padding: 20px 44px; border-radius: 50px;
+      box-shadow: 0 8px 32px rgba(242,100,25,0.35);
+      transition: background 0.2s, transform 0.2s;
     }
+
+    .btn-orange-big:hover { background: var(--orange-dk); transform: translateY(-2px); }
 
     .cta-hours {
-      display: flex; align-items: center; gap: 8px;
-      font-size: 0.85rem; color: var(--muted);
+      display: flex; align-items: center; justify-content: center;
+      gap: 8px; font-size: 0.82rem; color: #6b7280;
+      margin-top: 18px;
     }
 
     /* ── MAP ── */
-    #map { background: var(--navy); }
+    #map { background: var(--surface); }
 
     .map-layout {
       display: grid; grid-template-columns: 1fr 1.5fr;
-      gap: 48px; align-items: start; margin-top: 48px;
+      gap: 48px; align-items: start; margin-top: 52px;
     }
 
-    .contact-blocks { display: flex; flex-direction: column; gap: 20px; }
+    .info-list { display: flex; flex-direction: column; gap: 14px; }
 
-    .cblock {
-      background: var(--navy-mid);
+    .info-card {
+      background: var(--bg);
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      padding: 22px 20px;
+      padding: 20px;
       display: flex; align-items: flex-start; gap: 14px;
     }
 
-    .cblock-icon {
-      width: 38px; height: 38px;
-      background: rgba(242,100,25,0.1);
-      border: 1px solid rgba(242,100,25,0.2);
-      border-radius: 9px;
+    .info-icon {
+      width: 38px; height: 38px; border-radius: 9px;
+      background: var(--orange-bg);
+      border: 1px solid var(--orange-bd);
       display: flex; align-items: center; justify-content: center;
       color: var(--orange); flex-shrink: 0; margin-top: 2px;
     }
 
-    .cblock h4 {
+    .info-card h4 {
       font-size: 0.68rem; text-transform: uppercase;
-      letter-spacing: 0.1em; color: var(--muted); margin-bottom: 5px;
+      letter-spacing: 0.1em; color: var(--ink-light); margin-bottom: 4px;
     }
 
-    .cblock p, .cblock a {
-      font-size: 0.92rem; font-weight: 600; color: var(--white);
+    .info-card p, .info-card a {
+      font-size: 0.92rem; font-weight: 600; color: var(--ink);
       text-decoration: none;
     }
 
-    .cblock a:hover { color: var(--orange); }
-    .cblock .big-phone { font-size: 1.25rem; color: var(--orange); }
+    .info-card a:hover { color: var(--orange); }
+    .phone-val { font-size: 1.2rem; color: var(--orange) !important; }
 
-    .zone-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+    .chips { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 8px; }
 
     .chip {
-      font-size: 0.72rem; font-weight: 600;
-      background: rgba(242,100,25,0.1);
-      border: 1px solid rgba(242,100,25,0.2);
+      font-size: 0.7rem; font-weight: 600;
+      background: var(--orange-bg);
+      border: 1px solid var(--orange-bd);
       color: var(--orange);
-      padding: 4px 12px; border-radius: 50px;
+      padding: 4px 11px; border-radius: 50px;
     }
 
     .map-wrap {
       border-radius: var(--radius-lg);
       overflow: hidden;
       border: 1px solid var(--border);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
     }
 
     .map-wrap iframe {
       display: block; width: 100%; height: 420px; border: none;
-      filter: grayscale(20%) brightness(0.9);
     }
 
     /* ── FOOTER ── */
     footer {
-      background: #080e15;
-      border-top: 1px solid var(--border);
+      background: var(--ink);
       padding: 32px 48px;
       display: flex; align-items: center; justify-content: space-between;
       gap: 16px; flex-wrap: wrap;
     }
 
     footer svg { height: 32px; width: auto; opacity: 0.65; }
-    footer p { font-size: 0.76rem; color: var(--muted); }
-    footer a { color: var(--muted); text-decoration: none; }
+    footer p { font-size: 0.75rem; color: #6b7280; }
+    footer a { color: #6b7280; text-decoration: none; }
     footer a:hover { color: var(--orange); }
 
-    /* ── STICKY MOBILE CTA ── */
+    /* ── STICKY MOBILE ── */
     .sticky-call {
       display: none;
       position: fixed; bottom: 16px; left: 50%;
       transform: translateX(-50%);
       z-index: 200;
       background: var(--orange);
-      color: var(--white);
-      font-weight: 800; font-size: 1rem;
+      color: #fff;
+      font-weight: 700; font-size: 1rem;
       text-decoration: none;
-      padding: 17px 36px; border-radius: 50px;
-      box-shadow: 0 8px 32px rgba(242,100,25,0.55);
+      padding: 16px 36px; border-radius: 50px;
+      box-shadow: 0 8px 32px rgba(242,100,25,0.45);
       white-space: nowrap;
       align-items: center; gap: 10px;
-      animation: floatup 2.5s ease-in-out infinite;
+      animation: float 2.5s ease-in-out infinite;
     }
 
-    @keyframes floatup {
+    @keyframes float {
       0%, 100% { transform: translateX(-50%) translateY(0); }
       50%       { transform: translateX(-50%) translateY(-5px); }
     }
 
     /* ── RESPONSIVE ── */
+    /* ── BURGER ── */
+    .burger {
+      display: none;
+      flex-direction: column; justify-content: center; align-items: center;
+      gap: 5px; width: 38px; height: 38px;
+      background: none; border: 1.5px solid var(--border);
+      border-radius: 9px; cursor: pointer; flex-shrink: 0;
+      transition: border-color 0.2s;
+    }
+    .burger:hover { border-color: var(--orange-bd); }
+    .burger span {
+      display: block; width: 18px; height: 2px;
+      background: var(--ink-mid); border-radius: 2px;
+      transition: transform 0.25s, opacity 0.25s;
+    }
+    .burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .burger.open span:nth-child(2) { opacity: 0; }
+    .burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .mobile-menu {
+      display: none;
+      position: fixed; top: 65px; left: 0; right: 0; z-index: 99;
+      background: rgba(255,255,255,0.98);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 20px 16px;
+      flex-direction: column; gap: 4px;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu-link {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 1rem; font-weight: 600; color: var(--ink-mid);
+      text-decoration: none; padding: 12px 14px;
+      border-radius: var(--radius);
+      transition: background 0.15s, color 0.15s;
+    }
+    .mobile-menu-link:hover { background: var(--surface); color: var(--ink); }
+    .mobile-menu-link.active { color: var(--orange); background: var(--orange-bg); }
+    .mobile-menu-link svg { color: var(--orange); flex-shrink: 0; }
+
     @media (max-width: 900px) {
       nav { padding: 14px 20px; }
-      #hero { grid-template-columns: 1fr; padding: 100px 20px 56px; gap: 36px; }
-      .hero-right { order: -1; }
-      .hero-visual { height: 200px; }
+      .burger { display: flex; }
+      .nav-links { display: none; }
+      #hero { grid-template-columns: 1fr; padding: 110px 20px 60px; gap: 36px; }
+      #hero::before { display: none; }
       section { padding: 64px 20px; }
-      .reassurance-bar { padding: 16px 20px; gap: 20px; }
+      .rea-bar { padding: 16px 20px; gap: 16px; }
       .problem-grid { grid-template-columns: 1fr; }
+      .why-grid { grid-template-columns: 1fr 1fr; }
       .map-layout { grid-template-columns: 1fr; }
       footer { padding: 24px 20px; }
+      #cta-mid { padding: 64px 20px; }
     }
 
     @media (max-width: 640px) {
-      .nav-phone span.phone-text { display: none; }
+      .nav-right .nav-phone { display: none; }
+      .nav-cta { padding: 9px 14px; font-size: 0.8rem; gap: 6px; }
+      .nav-cta svg { display: none; }
       .sticky-call { display: inline-flex; }
       body { padding-bottom: 76px; }
-      .hero-stats { grid-template-columns: repeat(3, 1fr); }
-      #cta-mid { padding: 56px 20px; }
+      .why-grid { grid-template-columns: 1fr; }
+      .hero-stats-panel { grid-template-columns: repeat(3, 1fr); }
+      .btn-orange { font-size: 0.78rem; padding: 14px 18px; gap: 8px; white-space: nowrap; display: flex; width: fit-content; margin: 0 auto; }
+      .btn-orange .icon { width: 28px; height: 28px; flex-shrink: 0; }
     }
   </style>
 </head>
@@ -528,26 +616,59 @@
 <!-- NAV -->
 <nav>
   <a href="#" class="nav-logo">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 172 44" height="44" aria-label="CGM Automobile">
-      <rect x="0" y="3" width="3.5" height="38" rx="1.75" fill="#f26419"/>
-      <rect x="7" y="10" width="3.5" height="24" rx="1.75" fill="#f26419" opacity="0.38"/>
-      <text x="18" y="29" font-family="Manrope,system-ui,sans-serif" font-size="24" font-weight="800" fill="#ffffff" letter-spacing="-0.5">CGM</text>
-      <text x="19" y="41" font-family="Manrope,system-ui,sans-serif" font-size="8" font-weight="600" fill="#8fa3b8" letter-spacing="2.8">AUTOMOBILE</text>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 44" height="44" aria-label="Globale Service Automotive">
+      <!-- Globe arc icon -->
+      <circle cx="20" cy="22" r="16" fill="none" stroke="#f26419" stroke-width="2.5"/>
+      <ellipse cx="20" cy="22" rx="7" ry="16" fill="none" stroke="#f26419" stroke-width="1.5"/>
+      <line x1="4" y1="22" x2="36" y2="22" stroke="#f26419" stroke-width="1.5"/>
+      <line x1="6" y1="13" x2="34" y2="13" stroke="#f26419" stroke-width="1" opacity="0.5"/>
+      <line x1="6" y1="31" x2="34" y2="31" stroke="#f26419" stroke-width="1" opacity="0.5"/>
+      <!-- Brand text -->
+      <text x="46" y="27" font-family="Manrope,system-ui,sans-serif" font-size="18" font-weight="800" fill="#111827" letter-spacing="-0.3">Globale Service</text>
+      <text x="47" y="40" font-family="Manrope,system-ui,sans-serif" font-size="8" font-weight="600" fill="#6b7280" letter-spacing="2.8">AUTOMOTIVE</text>
     </svg>
   </a>
-  <a href="tel:+33XXXXXXXXX" class="nav-phone">
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-    <span class="phone-text">05 XX XX XX XX</span>
-  </a>
+  <div class="nav-links">
+    <a href="v1.html" class="nav-link active">Gestion de sinistre</a>
+    <a href="gestion-flotte-v1.html" class="nav-link">Gestion de flotte</a>
+    <a href="#realisations" class="nav-link">Réalisations</a>
+  </div>
+  <div class="nav-right">
+    <a href="tel:+33XXXXXXXXX" class="nav-phone">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+      05 XX XX XX XX
+    </a>
+    <a href="tel:+33XXXXXXXXX" class="nav-cta">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+      Appeler
+    </a>
+    <button class="burger" id="burgerBtn" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
 </nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="v1.html" class="mobile-menu-link active">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    Gestion de sinistre
+  </a>
+  <a href="gestion-flotte-v1.html" class="mobile-menu-link">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17H3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v3m0 0h3l3 3v4h-6m0 0a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm-9 0a2 2 0 1 1-4 0 2 2 0 0 1 4 0z"/></svg>
+    Gestion de flotte
+  </a>
+  <a href="#realisations" class="mobile-menu-link">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+    Réalisations
+  </a>
+</div>
 
 <!-- HERO -->
 <section id="hero">
-  <div class="hero-bg"></div>
   <div class="hero-left">
-    <div class="hero-badge">Garage agréé · Tresses, Gironde</div>
-    <h1>Votre sinistre auto géré<br /><span>de A à Z.</span><br />Rapidement.</h1>
-    <p class="hero-sub">Après un accident, CGM Automobile prend tout en charge : démarches assurance, expertise, réparation. Vous n'avez qu'un seul appel à passer.</p>
+    <div class="hero-label">Garage automobile · Bordeaux Rive Droite</div>
+    <h1>Votre sinistre auto<br />géré <span class="accent">de A à Z.</span><br />Rapidement.</h1>
+    <p class="hero-sub">Après un accident, Globale Service Automotive prend tout en charge : démarches assurance, expertise, réparation. Vous n'avez qu'un seul appel à passer.</p>
     <a href="tel:+33XXXXXXXXX" class="btn-orange">
       <span class="icon">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
@@ -556,76 +677,71 @@
     </a>
     <div class="hero-note">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-      Lundi – Vendredi · 8h00–18h00
+      Lundi – Vendredi · 8h00 – 18h00
     </div>
   </div>
 
   <div class="hero-right">
-    <!-- Illustration SVG voiture + garage -->
-    <div class="hero-visual">
-      <svg viewBox="0 0 560 280" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <!-- Ground -->
-        <rect x="0" y="220" width="560" height="60" fill="#162232" rx="0"/>
-        <!-- Garage building -->
-        <rect x="30" y="60" width="180" height="165" fill="#1e3350" rx="4"/>
-        <rect x="30" y="60" width="180" height="8" fill="#f26419"/>
-        <!-- Garage door -->
-        <rect x="55" y="130" width="130" height="95" fill="#243d5c" rx="3"/>
-        <line x1="55" y1="160" x2="185" y2="160" stroke="#0d1b2a" stroke-width="2"/>
-        <line x1="55" y1="190" x2="185" y2="190" stroke="#0d1b2a" stroke-width="2"/>
-        <line x1="120" y1="130" x2="120" y2="225" stroke="#0d1b2a" stroke-width="2"/>
-        <!-- Window -->
-        <rect x="55" y="80" width="50" height="38" fill="#0d1b2a" rx="2"/>
-        <rect x="115" y="80" width="50" height="38" fill="#0d1b2a" rx="2"/>
-        <!-- CGM sign -->
-        <rect x="60" y="88" width="100" height="22" fill="rgba(242,100,25,0.2)" rx="2"/>
-        <text x="110" y="103" text-anchor="middle" fill="#f26419" font-size="9" font-weight="700" font-family="sans-serif">CGM AUTOMOBILE</text>
-
-        <!-- Car body -->
-        <rect x="230" y="162" width="290" height="58" fill="#1a3a5c" rx="8"/>
-        <!-- Car roof / cabin -->
-        <path d="M285 162 C295 128, 330 118, 380 118 L460 118 C490 118, 510 135, 516 162 Z" fill="#1a3a5c"/>
-        <!-- Windows -->
-        <path d="M298 158 C303 138, 320 128, 348 128 L388 128 L388 158 Z" fill="#0d2c45" opacity="0.9"/>
-        <rect x="394" y="128" width="82" height="30" fill="#0d2c45" rx="2" opacity="0.9"/>
-        <!-- Damage scratch -->
-        <path d="M255 180 L275 168 L268 185 L285 172" stroke="#f26419" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.8"/>
-        <!-- Wheels -->
-        <circle cx="298" cy="220" r="28" fill="#0d1b2a" stroke="#243d5c" stroke-width="4"/>
-        <circle cx="298" cy="220" r="12" fill="#243d5c"/>
-        <circle cx="478" cy="220" r="28" fill="#0d1b2a" stroke="#243d5c" stroke-width="4"/>
-        <circle cx="478" cy="220" r="12" fill="#243d5c"/>
-        <!-- Headlight -->
-        <ellipse cx="523" cy="179" rx="8" ry="12" fill="#f26419" opacity="0.6"/>
-        <!-- Tail light -->
-        <rect x="232" y="170" width="6" height="22" fill="#f26419" opacity="0.5" rx="2"/>
-        <!-- Orange accent stripe -->
-        <line x1="230" y1="185" x2="520" y2="185" stroke="#f26419" stroke-width="1.5" opacity="0.2"/>
-      </svg>
-    </div>
-
-    <div class="hero-stats">
-      <div class="stat-card">
-        <strong>10+</strong>
-        <span>ans d'expérience</span>
+    <div class="hero-panel">
+      <div class="hero-illustration">
+        <svg viewBox="0 0 480 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Building -->
+          <rect x="20" y="30" width="160" height="145" fill="#1e3350" rx="3"/>
+          <rect x="20" y="30" width="160" height="6" fill="#f26419"/>
+          <!-- Garage door -->
+          <rect x="45" y="105" width="110" height="70" fill="#243d5c" rx="2"/>
+          <line x1="45" y1="128" x2="155" y2="128" stroke="#0d1b2a" stroke-width="1.5"/>
+          <line x1="45" y1="151" x2="155" y2="151" stroke="#0d1b2a" stroke-width="1.5"/>
+          <line x1="100" y1="105" x2="100" y2="175" stroke="#0d1b2a" stroke-width="1.5"/>
+          <!-- Windows -->
+          <rect x="45" y="50" width="40" height="40" fill="#0d2c45" rx="2"/>
+          <rect x="96" y="50" width="40" height="40" fill="#0d2c45" rx="2"/>
+          <!-- GSA sign -->
+          <text x="100" y="80" text-anchor="middle" fill="#f26419" font-size="8" font-weight="700" font-family="sans-serif">GSA</text>
+          <!-- Ground -->
+          <rect x="0" y="175" width="480" height="25" fill="#162232" rx="0"/>
+          <!-- Car body -->
+          <rect x="195" y="133" width="262" height="42" fill="#1a3a5c" rx="6"/>
+          <!-- Cabin -->
+          <path d="M235 133 C242 108, 268 100, 310 100 L395 100 C418 100, 452 115, 458 133 Z" fill="#1a3a5c"/>
+          <!-- Windows -->
+          <path d="M246 129 C251 113, 265 104, 290 104 L328 104 L328 129 Z" fill="#0d2c45" opacity="0.9"/>
+          <rect x="334" y="104" width="70" height="25" fill="#0d2c45" rx="2" opacity="0.9"/>
+          <!-- Damage -->
+          <path d="M208 148 L225 138 L220 152 L234 142" stroke="#f26419" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.8"/>
+          <!-- Wheels -->
+          <circle cx="260" cy="175" r="22" fill="#0d1b2a" stroke="#243d5c" stroke-width="3"/>
+          <circle cx="260" cy="175" r="9" fill="#243d5c"/>
+          <circle cx="418" cy="175" r="22" fill="#0d1b2a" stroke="#243d5c" stroke-width="3"/>
+          <circle cx="418" cy="175" r="9" fill="#243d5c"/>
+          <!-- Headlight -->
+          <ellipse cx="460" cy="148" rx="7" ry="10" fill="#f26419" opacity="0.6"/>
+          <rect x="195" y="143" width="5" height="18" fill="#f26419" opacity="0.5" rx="2"/>
+        </svg>
       </div>
-      <div class="stat-card">
-        <strong>4.9★</strong>
-        <span>note Google</span>
-      </div>
-      <div class="stat-card">
-        <strong>0€</strong>
-        <span>avance de frais</span>
+      <div class="hero-stats-panel">
+        <div class="stat-cell">
+          <strong>10+</strong>
+          <span>ans d'expérience</span>
+        </div>
+        <div class="stat-cell">
+          <strong>4.9★</strong>
+          <span>note Google</span>
+        </div>
+        <div class="stat-cell">
+          <strong>0€</strong>
+          <span>avance de frais</span>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- REASSURANCE BAR -->
-<div class="reassurance-bar">
+<!-- REASSURANCE -->
+<div class="rea-bar">
   <div class="rea-item">
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-    Agréé toutes assurances
+    Aucune avance de frais
   </div>
   <div class="rea-item">
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
@@ -641,21 +757,21 @@
   </div>
 </div>
 
-<!-- SECTION 2 — PROBLEM -->
+<!-- PROBLEM -->
 <section id="problem">
   <div class="section-inner">
-    <div class="problem-grid">
+    <span class="tag">Vous reconnaissez-vous ?</span>
+    <h2>Un accident, et c'est<br />le parcours du combattant</h2>
+    <div class="problem-grid" style="margin-top:32px;">
       <div>
-        <span class="tag">Vous reconnaissez-vous ?</span>
-        <h2>Un accident, et c'est le parcours du combattant</h2>
-        <div class="pain-list" style="margin-top:32px;">
+        <div class="pain-list">
           <div class="pain-item">
             <div class="pain-icon">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
             </div>
             <div>
               <h4>Des démarches interminables</h4>
-              <p>Formulaires, relances, expertises à coordonner… votre assurance vous laisse seul face à la complexité.</p>
+              <p>Formulaires, relances, expertises à coordonner — votre assurance vous laisse seul.</p>
             </div>
           </div>
           <div class="pain-item">
@@ -664,43 +780,43 @@
             </div>
             <div>
               <h4>Des délais qui s'étirent</h4>
-              <p>Semaines sans nouvelles, rendez-vous repoussés, votre voiture immobilisée et votre vie bloquée.</p>
+              <p>Semaines sans nouvelles, rendez-vous repoussés. Votre vie est bloquée.</p>
             </div>
           </div>
           <div class="pain-item">
             <div class="pain-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2z"/><path d="M8 9.05v-.1M16 9.05v-.1M8 15a4 4 0 0 0 8 0"/></svg>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
             </div>
             <div>
-              <h4>Un manque de transparence</h4>
-              <p>Vous ne savez pas où en est votre dossier ni combien vous serez remboursé. Personne ne vous explique rien.</p>
+              <h4>Aucune transparence</h4>
+              <p>Vous ne savez pas où en est votre dossier. Personne ne vous explique rien.</p>
             </div>
           </div>
         </div>
       </div>
 
       <div class="promise-box">
-        <h3>CGM Automobile prend tout en charge — vous n'avez qu'à appeler.</h3>
+        <h3>Globale Service prend tout en charge. Vous n'avez qu'un seul appel à passer.</h3>
         <div class="promise-points">
-          <div class="promise-point">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-            Nous déclarons et gérons votre sinistre auprès de l'assureur
+          <div class="promise-pt">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Déclaration et gestion du dossier assurance
           </div>
-          <div class="promise-point">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-            Vous êtes informé à chaque étape, clairement
+          <div class="promise-pt">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Suivi transparent à chaque étape
           </div>
-          <div class="promise-point">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-            Réparation réalisée dans notre atelier agréé
+          <div class="promise-pt">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Réparation dans notre atelier
           </div>
-          <div class="promise-point">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-            Zéro avance de frais sur prise en charge
+          <div class="promise-pt">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Zéro avance de frais
           </div>
-          <div class="promise-point">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-            Véhicule de remplacement disponible
+          <div class="promise-pt">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Véhicule de courtoisie disponible
           </div>
         </div>
       </div>
@@ -708,79 +824,83 @@
   </div>
 </section>
 
-<!-- SECTION 3 — SERVICES -->
+<!-- SERVICES -->
 <section id="services">
   <div class="section-inner">
     <span class="tag">Nos prestations</span>
     <h2>Tout ce dont vous avez besoin,<br />au même endroit</h2>
-    <p class="section-sub">Un seul interlocuteur, du début à la fin du sinistre.</p>
-
+    <p class="section-sub">Un seul interlocuteur, du début à la fin de votre sinistre.</p>
     <div class="services-grid">
-      <div class="service-card">
-        <div class="service-icon">
+      <div class="srv-card">
+        <div class="srv-icon">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
         </div>
-        <h3>Prise en charge du sinistre</h3>
+        <h3>Prise en charge sinistre</h3>
         <p>Dès le premier appel, nous ouvrons votre dossier et coordonnons toutes les démarches administratives à votre place.</p>
       </div>
-      <div class="service-card">
-        <div class="service-icon">
+      <div class="srv-card">
+        <div class="srv-icon">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
         </div>
         <h3>Relation assureur directe</h3>
         <p>Nous contactons votre assurance, coordonnons l'expert mandaté et défendons vos intérêts tout au long du processus.</p>
       </div>
-      <div class="service-card">
-        <div class="service-icon">
+      <div class="srv-card">
+        <div class="srv-icon">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
         </div>
         <h3>Réparation & remise en état</h3>
-        <p>Carrosserie, peinture, mécanique — nos techniciens remettent votre véhicule en parfait état dans notre atelier agréé.</p>
+        <p>Carrosserie, peinture, mécanique — nos techniciens remettent votre véhicule en parfait état dans notre atelier.</p>
       </div>
-      <div class="service-card">
-        <div class="service-icon">
+      <div class="srv-card">
+        <div class="srv-icon">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17H3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v3m0 0h3l3 3v4h-6m0 0a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm-9 0a2 2 0 1 1-4 0 2 2 0 0 1 4 0z"/></svg>
         </div>
         <h3>Véhicule de remplacement</h3>
-        <p>Pour que votre vie ne s'arrête pas : un véhicule de courtoisie mis à disposition pendant toute la durée de l'immobilisation.</p>
+        <p>Un véhicule de courtoisie mis à disposition pendant toute la durée de l'immobilisation.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- SECTION 4 — WHY -->
+<!-- WHY -->
 <section id="why">
   <div class="section-inner">
-    <span class="tag">Pourquoi CGM ?</span>
+    <span class="tag">Pourquoi nous choisir ?</span>
     <h2>3 raisons de nous faire confiance</h2>
-
-    <div class="why-grid" style="margin-top:48px;">
-      <div class="why-item">
-        <span class="why-num">01</span>
-        <div>
-          <h3>Réactivité immédiate</h3>
-          <p>Nous répondons sous 24h et déployons notre équipe rapidement. Pas d'attente inutile quand vous avez besoin d'aide.</p>
-        </div>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="num">01</div>
+        <h3>Réactivité immédiate</h3>
+        <p>Réponse garantie sous 24h, prise en charge dès le premier appel. Nous intervenons vite quand vous avez besoin.</p>
       </div>
-      <div class="why-item">
-        <span class="why-num">02</span>
-        <div>
-          <h3>Expertise locale confirmée</h3>
-          <p>10 ans à servir les automobilistes de Gironde. Nous connaissons les assureurs, les experts et les procédures locales.</p>
-        </div>
+      <div class="why-card">
+        <div class="num">02</div>
+        <h3>Expertise locale</h3>
+        <p>10 ans à servir les automobilistes de Gironde. Nous connaissons les assureurs, les experts et les procédures locales.</p>
       </div>
-      <div class="why-item">
-        <span class="why-num">03</span>
-        <div>
-          <h3>Transparence totale</h3>
-          <p>Devis clair, suivi en temps réel, aucune surprise. Vous validez chaque étape avant qu'elle se déclenche.</p>
-        </div>
+      <div class="why-card">
+        <div class="num">03</div>
+        <h3>Transparence totale</h3>
+        <p>Devis clair, suivi en temps réel, aucune surprise. Vous validez chaque étape avant qu'elle se déclenche.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- SECTION 5 — REVIEWS -->
+<!-- RÉALISATIONS -->
+<section id="realisations">
+  <div class="section-inner">
+    <span class="tag">Nos réalisations</span>
+    <h2>Nos derniers travaux</h2>
+    <p class="section-sub">Carrosserie, réparations, remise en état — découvrez nos travaux en images.</p>
+    <div style="margin-top:40px; border-radius:var(--radius-lg); overflow:hidden; border:1px solid var(--border); box-shadow:0 4px 20px rgba(0,0,0,0.06);">
+      <iframe src="https://arsia-app.vercel.app//embed/user/69dcce18781673f0b65bb6f8" width="100%" height="420px" frameborder="0" style="border:none; display:block;" title="Réalisations Globale Service Automotive" loading="lazy"></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
 <section id="reviews">
   <div class="section-inner">
     <div class="reviews-top">
@@ -788,122 +908,119 @@
         <span class="tag">Avis clients</span>
         <h2>Ils nous ont fait confiance</h2>
       </div>
-      <div class="reviews-score-box">
-        <div class="big-score">4.9</div>
+      <div class="score-box">
+        <div class="score-num">4.9</div>
         <div>
           <div class="stars">★★★★★</div>
           <div class="score-meta">47 avis · Google Reviews</div>
-          <div class="score-meta" style="margin-top:4px; font-size:0.68rem;">+200 sinistres traités · 10 ans d'expérience</div>
+          <div class="score-meta" style="margin-top:3px; font-size:0.66rem;">200+ sinistres traités · 10 ans d'expérience</div>
         </div>
       </div>
     </div>
-
     <div class="reviews-grid">
-      <div class="review-card">
+      <div class="rv">
         <div class="rv-top">
-          <div class="rv-avatar" style="background:rgba(99,179,237,0.12);color:#63b3ed;">M</div>
+          <div class="rv-av" style="background:#dbeafe;color:#2563eb;">M</div>
           <div><div class="rv-name">Marie-Claire B.</div><div class="rv-date">Il y a 2 semaines</div></div>
         </div>
         <div class="rv-stars">★★★★★</div>
-        <p class="rv-text">"Après mon accident, j'étais complètement perdue. CGM a tout géré : l'assurance, l'expert, les réparations. Je n'ai eu à m'occuper de rien. Un grand merci."</p>
+        <p class="rv-text">"Après mon accident, j'étais complètement perdue. Globale Service a tout géré : l'assurance, l'expert, les réparations. Je n'ai eu à m'occuper de rien."</p>
       </div>
-      <div class="review-card">
+      <div class="rv">
         <div class="rv-top">
-          <div class="rv-avatar" style="background:rgba(154,215,160,0.12);color:#68d391;">T</div>
+          <div class="rv-av" style="background:#dcfce7;color:#16a34a;">T</div>
           <div><div class="rv-name">Thomas R.</div><div class="rv-date">Il y a 1 mois</div></div>
         </div>
         <div class="rv-stars">★★★★★</div>
-        <p class="rv-text">"Réactivité exemplaire. Dossier ouvert le matin, véhicule pris en charge l'après-midi. Suivi transparent à chaque étape. Je recommande vivement."</p>
+        <p class="rv-text">"Réactivité exemplaire. Dossier ouvert le matin, véhicule pris en charge l'après-midi. Suivi transparent à chaque étape. Je recommande."</p>
       </div>
-      <div class="review-card">
+      <div class="rv">
         <div class="rv-top">
-          <div class="rv-avatar" style="background:rgba(251,191,36,0.12);color:#f6c90e;">S</div>
+          <div class="rv-av" style="background:#fef9c3;color:#ca8a04;">S</div>
           <div><div class="rv-name">Sophie L.</div><div class="rv-date">Il y a 6 semaines</div></div>
         </div>
         <div class="rv-stars">★★★★★</div>
-        <p class="rv-text">"Qualité irréprochable. La carrosserie est parfaite, impossible de voir qu'il y a eu un accident. Équipe professionnelle, honnête et à l'écoute."</p>
+        <p class="rv-text">"Qualité irréprochable. Impossible de voir qu'il y a eu un accident. Équipe professionnelle, honnête sur les délais. Très satisfaite."</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- SECTION 6 — CTA MID -->
+<!-- CTA MID -->
 <section id="cta-mid">
   <div class="section-inner">
     <h2>Un sinistre ? Ne perdez pas de temps.</h2>
-    <p>Chaque heure perdue est une démarche de plus à faire seul. Appelez-nous maintenant.</p>
-    <div class="cta-row">
-      <a href="tel:+33XXXXXXXXX" class="btn-orange" style="font-size:1.05rem; padding:20px 40px;">
-        <span class="icon">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-        </span>
-        Appeler le 05 XX XX XX XX
-      </a>
-      <div class="cta-hours">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-        Lun–Ven · 8h00–18h00
-      </div>
+    <p>Chaque heure perdue est une démarche supplémentaire à faire seul. Appelez maintenant.</p>
+    <a href="tel:+33XXXXXXXXX" class="btn-orange-big">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+      Appeler le 05 XX XX XX XX
+    </a>
+    <div class="cta-hours">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      Lundi – Vendredi · 8h00 – 18h00
     </div>
   </div>
 </section>
 
-<!-- SECTION 7 — MAP & CONTACT -->
+<!-- MAP -->
 <section id="map">
   <div class="section-inner">
     <span class="tag">Nous trouver</span>
     <h2>Situés à Tresses, à 15 min de Bordeaux</h2>
+    <p class="section-sub">Facilement accessible depuis la rocade Est (A630). Intervention sur toute la Gironde.</p>
     <div class="map-layout">
-      <div class="contact-blocks">
-        <div class="cblock">
-          <div class="cblock-icon">
+      <div class="info-list">
+        <div class="info-card">
+          <div class="info-icon">
             <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
           </div>
           <div>
             <h4>Téléphone</h4>
-            <a href="tel:+33XXXXXXXXX" class="big-phone">05 XX XX XX XX</a>
+            <a href="tel:+33XXXXXXXXX" class="phone-val">05 XX XX XX XX</a>
           </div>
         </div>
-        <div class="cblock">
-          <div class="cblock-icon">
+        <div class="info-card">
+          <div class="info-icon">
             <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
           </div>
           <div>
             <h4>Adresse</h4>
-            <p>2 Chemin de Belle Étoile<br />33370 Tresses</p>
+            <p>2 Chemin de Belle Étoile, 33370 Tresses</p>
           </div>
         </div>
-        <div class="cblock">
-          <div class="cblock-icon">
+        <div class="info-card">
+          <div class="info-icon">
             <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
           </div>
           <div>
             <h4>Horaires</h4>
             <p>Lun – Ven : 8h00 – 18h00</p>
-            <p style="color:var(--muted);font-size:0.82rem;margin-top:3px;">Sam : sur rendez-vous</p>
+            <p style="color:var(--ink-light);font-size:0.82rem;margin-top:3px;">Sam : sur rendez-vous</p>
           </div>
         </div>
-        <div class="cblock">
-          <div class="cblock-icon">
+        <div class="info-card">
+          <div class="info-icon">
             <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
           </div>
           <div>
             <h4>Zone d'intervention</h4>
-            <div class="zone-chips">
+            <div class="chips">
               <span class="chip">Tresses</span>
-              <span class="chip">Bordeaux</span>
-              <span class="chip">Mérignac</span>
-              <span class="chip">Pessac</span>
-              <span class="chip">Gironde</span>
+              <span class="chip">Bordeaux Rive Droite</span>
+              <span class="chip">Fargues-St-Hilaire</span>
+              <span class="chip">Sallebœuf</span>
+              <span class="chip">Floirac</span>
+              <span class="chip">Cenon</span>
+              <span class="chip">Bègles</span>
+              <span class="chip">Beychac-et-Caillau</span>
+              <span class="chip">Montussan</span>
+              <span class="chip">Pompignac</span>
             </div>
           </div>
         </div>
       </div>
       <div class="map-wrap">
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2838.5!2d-0.4826!3d44.8285!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd5527b79d0e3901%3A0x0!2s2+Chemin+de+Belle+%C3%89toile%2C+33370+Tresses!5e0!3m2!1sfr!2sfr!4v1680000000000!5m2!1sfr!2sfr"
-          allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
-          title="CGM Automobile — Tresses">
-        </iframe>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2838.5!2d-0.4826!3d44.8285!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd5527b79d0e3901%3A0x0!2s2+Chemin+de+Belle+%C3%89toile%2C+33370+Tresses!5e0!3m2!1sfr!2sfr!4v1680000000000!5m2!1sfr!2sfr" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Globale Service Automotive"></iframe>
       </div>
     </div>
   </div>
@@ -911,22 +1028,72 @@
 
 <!-- FOOTER -->
 <footer>
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 172 44" height="44" aria-label="CGM Automobile">
-    <rect x="0" y="3" width="3.5" height="38" rx="1.75" fill="#f26419"/>
-    <rect x="7" y="10" width="3.5" height="24" rx="1.75" fill="#f26419" opacity="0.38"/>
-    <text x="18" y="29" font-family="Manrope,system-ui,sans-serif" font-size="24" font-weight="800" fill="#ffffff" letter-spacing="-0.5">CGM</text>
-    <text x="19" y="41" font-family="Manrope,system-ui,sans-serif" font-size="8" font-weight="600" fill="#8fa3b8" letter-spacing="2.8">AUTOMOBILE</text>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 32" height="32" aria-label="Globale Service Automotive">
+    <!-- Globe arc icon -->
+    <circle cx="14" cy="16" r="12" fill="none" stroke="#f26419" stroke-width="2"/>
+    <ellipse cx="14" cy="16" rx="5" ry="12" fill="none" stroke="#f26419" stroke-width="1.2"/>
+    <line x1="2" y1="16" x2="26" y2="16" stroke="#f26419" stroke-width="1.2"/>
+    <line x1="4" y1="9" x2="24" y2="9" stroke="#f26419" stroke-width="0.8" opacity="0.5"/>
+    <line x1="4" y1="23" x2="24" y2="23" stroke="#f26419" stroke-width="0.8" opacity="0.5"/>
+    <!-- Brand text -->
+    <text x="34" y="19" font-family="Manrope,system-ui,sans-serif" font-size="14" font-weight="800" fill="#ffffff" letter-spacing="-0.2">Globale Service</text>
+    <text x="35" y="29" font-family="Manrope,system-ui,sans-serif" font-size="7" font-weight="600" fill="#8fa3b8" letter-spacing="2.2">AUTOMOTIVE</text>
   </svg>
-  <p>© 2024 CGM Automobile · 2 Chemin de Belle Étoile, 33370 Tresses · SIRET : 828 956 748 00036</p>
+  <p>© 2024 Globale Service Automotive · 2 Chemin de Belle Étoile, 33370 Tresses · SIRET : 828 956 748 00036</p>
   <p><a href="#">Mentions légales</a> · <a href="#">Politique de confidentialité</a></p>
 </footer>
 
-<!-- STICKY MOBILE CTA -->
+<!-- STICKY MOBILE -->
 <a href="tel:+33XXXXXXXXX" class="sticky-call">
   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
   Appeler maintenant
 </a>
 
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "AutoRepair",
+  "name": "Globale Service Automotive",
+  "description": "Gestion de sinistre automobile et gestion de flotte sur Bordeaux Rive Droite. Prise en charge complète après accident, démarches assurance, réparations.",
+  "url": "https://globaleserviceautomotive.fr",
+  "telephone": "+33XXXXXXXXX",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "2 Chemin de Belle Étoile",
+    "addressLocality": "Tresses",
+    "postalCode": "33370",
+    "addressCountry": "FR"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 44.8285,
+    "longitude": -0.4826
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+      "opens": "08:00",
+      "closes": "18:00"
+    }
+  ],
+  "areaServed": [
+    "Tresses", "Bordeaux", "Fargues-Saint-Hilaire", "Sallebœuf",
+    "Floirac", "Cenon", "Bègles", "Beychac-et-Caillau",
+    "Montussan", "Pompignac", "Gironde"
+  ],
+  "priceRange": "€€",
+  "sameAs": []
+}
+</script>
+<script>
+(function(){
+  var btn=document.getElementById('burgerBtn'), menu=document.getElementById('mobileMenu');
+  btn.addEventListener('click',function(e){e.stopPropagation();btn.classList.toggle('open');menu.classList.toggle('open');});
+  document.addEventListener('click',function(){btn.classList.remove('open');menu.classList.remove('open');});
+  menu.addEventListener('click',function(e){e.stopPropagation();});
+})();
+</script>
 <script src="nav.js"></script>
 </body>
 </html>
